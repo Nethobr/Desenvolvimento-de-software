@@ -1,0 +1,4 @@
+Matrícula;Nome;Nota
+1;Alan Oliveira Dias;10
+2;Alexandre da Silva;3
+3;Amanda Cristina;3
