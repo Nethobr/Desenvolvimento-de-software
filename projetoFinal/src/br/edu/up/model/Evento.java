@@ -19,9 +19,7 @@ public class Evento
 	public Integer getId() {
 		return id;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+
 	
 	private String nome_evento;
 	public String getNome_evento() {
@@ -45,5 +43,13 @@ public class Evento
 	}
 	public void setDescricao_evento(String descricao_evento) {
 		this.descricao_evento = descricao_evento;
+	}
+	
+	private Integer id_categoria;
+	public Integer getId_categoria() {
+		return id_categoria;
+	}
+	public void setId_categoria(Integer id_categoria) {
+		this.id_categoria = id_categoria;
 	}
 }	// Fim EventoModel
