@@ -1,7 +1,11 @@
 package br.edu.up;
 
-//import br.edu.up.controller.CategoriaEventoController;
+import java.util.List;
+
+import br.edu.up.controller.CategoriaEventoController;
 import br.edu.up.controller.EventoController;
+import br.edu.up.model.CategoriaEvento;
+import br.edu.up.model.Evento;
 //import br.edu.up.model.CategoriaEvento;
 //import br.edu.up.model.Evento;
 import br.edu.up.view.EventoView;
@@ -10,8 +14,8 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-//		CategoriaEvento cat = new CategoriaEvento();
-//
+		List<CategoriaEvento> cat = CategoriaEventoController.ListarCategorias();
+		List<Evento> evn = EventoController.ListarEventos();
 //				
 //		cat.setNome_categoria("Palestra");
 //		cat.setDesc_categoria("Tuch-tuch");
@@ -19,8 +23,8 @@ public class Main {
 //		CategoriaEventoController.salvaCategoria(cat);
 		
 		
-		
-		EventoView.imprimir(EventoController.localizar(6));
+//		EventoView.menuCadastroEventos(cat);
+		EventoView.imprimirEventos(evn);
 	}	// fim método
 }
 //

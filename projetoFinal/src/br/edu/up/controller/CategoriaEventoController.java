@@ -1,5 +1,7 @@
 package br.edu.up.controller;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,6 +17,13 @@ public class CategoriaEventoController
 		emf = Persistence.createEntityManagerFactory("prj-final");
 		em = emf.createEntityManager();
 	}
+	
+	public static List<CategoriaEvento> ListarCategorias()
+	{
+		iniciarEm();
+		List<CategoriaEvento> categorias = em.createQuery("from CategoriaEvento", CategoriaEvento.class).getResultList();
+		return categorias;
+	}	// Fim ListarEventos
 	
 	public static Integer salvaCategoria (CategoriaEvento categoria)
 	{
