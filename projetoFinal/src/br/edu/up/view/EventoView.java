@@ -14,9 +14,8 @@ public class EventoView
 	{
 		for (Evento evento : eventos)
 		{
-			System.out.println();
 			System.out.println("------");
-			System.out.println("ID: " + evento.getNome_evento());
+			System.out.println("Nome: " + evento.getNome_evento());
 		}	// Fim for	
 	}	// Fim imprimirEventos
 	

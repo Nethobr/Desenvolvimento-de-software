@@ -2,9 +2,9 @@ package br.edu.up;
 
 import java.util.List;
 
-import br.edu.up.controller.CategoriaEventoController;
+//import br.edu.up.controller.CategoriaEventoController;
 import br.edu.up.controller.EventoController;
-import br.edu.up.model.CategoriaEvento;
+//import br.edu.up.model.CategoriaEvento;
 import br.edu.up.model.Evento;
 //import br.edu.up.model.CategoriaEvento;
 //import br.edu.up.model.Evento;
@@ -14,7 +14,7 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-		List<CategoriaEvento> cat = CategoriaEventoController.ListarCategorias();
+//		List<CategoriaEvento> cat = CategoriaEventoController.ListarCategorias();
 		List<Evento> evn = EventoController.ListarEventos();
 //				
 //		cat.setNome_categoria("Palestra");
