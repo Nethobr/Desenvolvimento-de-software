@@ -14,10 +14,12 @@ public class EventoView
 	{
 		for (Evento evento : eventos)
 		{
-			String tp_evento = CategoriaEventoController.localizar(evento.getId_categoria()).getNome_categoria();
-			System.out.println("------");
-			System.out.println("" + evento.getNome_evento());
-			System.out.println("Tipo do evento: " + tp_evento);
+			System.out.println();
+			CategoriaEvento cat = CategoriaEventoController.localizar(evento.getId_categoria());
+			System.out.println("- Nome: " + evento.getNome_evento() + " (" + evento.getId() + ").");
+			System.out.println("- Descrição: " + evento.getDescricao_evento());
+			System.out.println("- Categoria: " + cat.getNome_categoria());
+			System.out.println("- Data: " + evento.getData_evento());
 		}	// Fim for	
 	}	// Fim imprimirEventos
 	
@@ -25,22 +27,33 @@ public class EventoView
 	{
 		// Objetos
 		Scanner input = new Scanner (System.in); 
-
+		Evento atualEvento = new Evento();
+		
 		// Início
 		System.out.print("Informe o nomme do evento: ");
 		String nome = input.next();
 		
 		List<Evento> eventos = EventoController.localizarNome(nome);
 		
-		for (Evento evn : eventos)
-		{	
-			System.out.println();
-			CategoriaEvento cat = CategoriaEventoController.localizar(evn.getId_categoria());
-			System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
-			System.out.println("- Descrição: " + evn.getDescricao_evento());
-			System.out.println("- Categoria: " + cat.getNome_categoria());
-			System.out.println("- Data: " + evn.getData_evento());
-		}	// Fim for
+		if (eventos.isEmpty())
+		{
+			System.out.println("O evento " + nome + " não está cadastrado.");
+		} 
+		else
+		{
+			for (Evento evn : eventos)
+			{	
+				System.out.println();
+				CategoriaEvento cat = CategoriaEventoController.localizar(evn.getId_categoria());
+				System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
+				System.out.println("- Descrição: " + evn.getDescricao_evento());
+				System.out.println("- Categoria: " + cat.getNome_categoria());
+				System.out.println("- Data: " + evn.getData_evento());
+				System.out.println();
+				atualEvento = evn;
+			}	// Fim for
+			MainView.crudOp(atualEvento.getId());
+		}
 		input.close();
 	}	// Fim imprimirEventoNome
 		
@@ -106,4 +119,41 @@ public class EventoView
 		} while (keep == 0);
 		input.close();
 	}	// Fim menuCadastroEventos
+
+	public static void menuAtualizar(Evento evento)
+	{
+		Scanner in = new Scanner(System.in);
+		Evento newEvento = new Evento();
+		CategoriaEvento cat = CategoriaEventoController.localizar(evento.getId_categoria());
+		
+		System.out.print("Novo nome (" +evento.getNome_evento() + "): ");
+		String nome = in.next();
+		System.out.print("Descrição: ");
+		String desc = in.next();
+		System.out.print("Categoria (" + cat.getNome_categoria() + "): ");
+		Integer catE = in.nextInt();
+		System.out.print("Data (" + evento.getData_evento() + "): ");
+		String data = in.next();
+		
+		newEvento.setId(evento.getId());
+		
+		if (nome != null)
+			newEvento.setNome_evento(nome);
+		if (desc != null)
+			newEvento.setDescricao_evento(desc);
+		if (catE != null)
+			newEvento.setId_categoria(catE);
+		if (data != null)
+			newEvento.setData_evento(data);
+		
+		if (MainView.trueDecision() == "SIM")
+		{
+			EventoController.atualizarEvento(newEvento);
+			System.out.println("Operação realizada com sucesso!");
+		}
+		else
+			System.out.println("Operação cancelada!");
+	
+		in.close();
+	}	// Fim menuAtualizar
 }	// Fim EventoView

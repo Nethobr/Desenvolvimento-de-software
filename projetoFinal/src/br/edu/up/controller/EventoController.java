@@ -42,8 +42,8 @@ public class EventoController
 		return evento;
 	}
 	
-	
-	public static Integer salvarEvento (Evento evento)
+	// CRUD'S DE EDIÇÃO DO BANCO
+	public static Integer salvarEvento(Evento evento)
 	{
 		iniciarEm();
 		
@@ -54,5 +54,10 @@ public class EventoController
 		return evento.getId();
 	}	// Fim salvarEvento
 
-	
+	public static void atualizarEvento(Evento evento)
+	{
+		em.getTransaction().begin();
+		em.merge(evento);
+		em.getTransaction().commit();
+	}	// Fim atualizarEvento
 }	// Fim EventoController
