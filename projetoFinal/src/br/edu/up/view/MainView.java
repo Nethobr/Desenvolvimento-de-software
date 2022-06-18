@@ -17,14 +17,18 @@ public class MainView
 		List<Evento> eventos = EventoController.ListarEventos();
 		Scanner input = new Scanner (System.in);
 		
-		System.out.println("Quais operações deseja realizar: ");
-		System.out.println("	1 - Imprimir todos os eventos.");
-		System.out.println("	2 - Selecionar evento por nome.");
-		System.out.println("	3 - Selecionar eventos por data.");
-		System.out.println("	4 - Selecionar eventos po categoria.");
+		System.out.println("Quais operações deseja realizar");
+		System.out.println();
+		System.out.println("1 - Imprimir todos os eventos.");
+		System.out.println("2 - Selecionar evento por nome.");
+		System.out.println("3 - Selecionar eventos por data.");
+		System.out.println("4 - Selecionar eventos po categoria.");
 		System.out.println();
 		System.out.print("Informe atrávés de seu número qual deseja: ");
 		op = input.nextInt();
+		System.out.println();
+		System.out.println("-----------------------------------------");
+		System.out.println();
 		
 		switch (op)
 		{

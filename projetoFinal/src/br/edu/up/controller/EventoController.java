@@ -33,12 +33,12 @@ public class EventoController
 		return evento;
 	}
 
-	public static Evento localizarNome(String nome) {
+	public static List<Evento> localizarNome(String nome) {
 		iniciarEm();
 		
 		TypedQuery<Evento> query = em.createQuery(
 		"SELECT e FROM Evento e WHERE e.nome_evento = :name", Evento.class);
-		Evento evento = query.setParameter("name", nome).getSingleResult();
+		List<Evento> evento = query.setParameter("name", nome).getResultList();
 		return evento;
 	}
 	

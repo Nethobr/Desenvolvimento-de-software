@@ -29,16 +29,18 @@ public class EventoView
 		// Início
 		System.out.print("Informe o nomme do evento: ");
 		String nome = input.next();
-	
-		System.out.println();
 		
-		Evento evn = EventoController.localizarNome(nome);
-		CategoriaEvento cat = CategoriaEventoController.localizar(evn.getId_categoria());
-		System.out.println("Localizado: " + evn.getNome_evento() + " (" + evn.getId() + ").");
-		System.out.println("- Descrição: " + evn.getDescricao_evento());
-		System.out.println("- Categoria: " + cat.getNome_categoria());
-		System.out.println("- Data: " + evn.getData_evento());
+		List<Evento> eventos = EventoController.localizarNome(nome);
 		
+		for (Evento evn : eventos)
+		{	
+			System.out.println();
+			CategoriaEvento cat = CategoriaEventoController.localizar(evn.getId_categoria());
+			System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
+			System.out.println("- Descrição: " + evn.getDescricao_evento());
+			System.out.println("- Categoria: " + cat.getNome_categoria());
+			System.out.println("- Data: " + evn.getData_evento());
+		}	// Fim for
 		input.close();
 	}	// Fim imprimirEventoNome
 		
