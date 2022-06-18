@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import br.edu.up.model.Evento;
 
@@ -32,6 +33,15 @@ public class EventoController
 		return evento;
 	}
 
+	public static Evento localizarNome(String nome) {
+		iniciarEm();
+		
+		TypedQuery<Evento> query = em.createQuery(
+		"SELECT e FROM Evento e WHERE e.nome_evento = :name", Evento.class);
+		Evento evento = query.setParameter("name", nome).getSingleResult();
+		return evento;
+	}
+	
 	
 	public static Integer salvarEvento (Evento evento)
 	{
