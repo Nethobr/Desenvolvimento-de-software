@@ -21,6 +21,9 @@ public class EventoView
 			System.out.println("- Categoria: " + cat.getNome_categoria());
 			System.out.println("- Data: " + evento.getData_evento());
 		}	// Fim for	
+		
+		MainView.keepProgram();
+		
 	}	// Fim imprimirEventos
 	
 	public static void imprimirEventoNome ()
@@ -106,7 +109,9 @@ public class EventoView
 				System.out.println();
 			}	// Fim for
 		}
+		MainView.keepProgram();
 		input.close();
+
 	}	// Fim imprimirPorCategorias
 	
 	public static void menuCadastroEventos(List<CategoriaEvento> categorias)
@@ -118,20 +123,19 @@ public class EventoView
 		{
 			Evento evn = new Evento ();
 			
+			System.out.println();
 			System.out.print("Informe o nome do evento: ");
 			evn.setNome_evento(input.next());
 			
 			System.out.print("Descrição do evento: ");
 			evn.setDescricao_evento(input.next());
-			
+			input.nextLine();
 			System.out.println("Digite o ID da categoria");
 			imprimirCategoria(categorias);
 			evn.setId_categoria(input.nextInt());
-			
+			input.nextLine();
 			System.out.print("Informe a data do evento DD/MM/AAAA: ");
 			evn.setData_evento(input.next());
-			
-			input.nextLine();
 			
 			EventoController.salvarEvento(evn);
 			System.out.print("Desenha continuar? (1 = CONTINUAR): ");
@@ -149,8 +153,8 @@ public class EventoView
 				count ++;
 				keep = 0;
 			}
-			input.nextLine();
 		} while (keep == 0);
+		MainView.keepProgram();
 		input.close();
 	}	// Fim menuCadastroEventos
 
@@ -187,13 +191,16 @@ public class EventoView
 		}
 		else
 			System.out.println("Operação cancelada!");
-	
+		
+		MainView.keepProgram();
+		
 		in.close();
 	}	// Fim menuAtualizar
 	
 	public static void menuDeletar(Evento evento)
 	{
 		System.out.print("Nome ("+ evento.getId() +"): " + evento.getNome_evento() + "");
+		System.out.println();
 		if (MainView.trueDecision() == "SIM")
 		{
 			EventoController.deletarEvento(evento.getId());
@@ -202,5 +209,6 @@ public class EventoView
 		else
 			System.out.println("Operação cancelada!");
 		
+		MainView.keepProgram();	
 	}	// Fim menuDeletar
 }	// Fim EventoView
