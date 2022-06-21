@@ -61,7 +61,7 @@ public class EventoView
 	{
 		for (CategoriaEvento categoria : categorias)
 		{
-			System.out.println("	(" + categoria.getId_cat() + ") -> " + categoria.getNome_categoria() + ".");
+			System.out.println("(" + categoria.getId_cat() + ") -> " + categoria.getNome_categoria() + ".");
 		}	// Fim for
 	}	// Fim imprimirCategoria
 	
@@ -69,11 +69,45 @@ public class EventoView
 	{	
 		String teste = CategoriaEventoController.localizar(evento.getId_categoria()).getNome_categoria();
 		
-		
 		System.out.println("Nome: "+ evento.getNome_evento());
 
 		System.out.println("Tipo do evento: " + teste);
 	}	// Fim imprimir
+	
+	public static void imprimirPorCategorias ()
+	{
+		// Objetos
+		Scanner input = new Scanner (System.in); 
+		List<CategoriaEvento> cats = CategoriaEventoController.ListarCategorias();
+		
+		// Início
+		System.out.println("Categorias: ");
+		imprimirCategoria(cats);
+		System.out.println();
+		System.out.print("Informe o ID da categoria: ");
+		int id = input.nextInt();
+		
+		List<Evento> eventos = EventoController.localizarComCatagoria(id);
+		
+		if (eventos.isEmpty())
+		{
+			System.out.println("Não tem nenhum evento registrado com está categoria.");
+		} 
+		else
+		{
+			for (Evento evn : eventos)
+			{	
+				System.out.println();
+				CategoriaEvento c = CategoriaEventoController.localizar(evn.getId_categoria());
+				System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
+				System.out.println("- Descrição: " + evn.getDescricao_evento());
+				System.out.println("- Categoria: " + c.getNome_categoria());
+				System.out.println("- Data: " + evn.getData_evento());
+				System.out.println();
+			}	// Fim for
+		}
+		input.close();
+	}	// Fim imprimirPorCategorias
 	
 	public static void menuCadastroEventos(List<CategoriaEvento> categorias)
 	{	
@@ -85,17 +119,17 @@ public class EventoView
 			Evento evn = new Evento ();
 			
 			System.out.print("Informe o nome do evento: ");
-			evn.setNome_evento(input.nextLine());
+			evn.setNome_evento(input.next());
 			
 			System.out.print("Descrição do evento: ");
-			evn.setDescricao_evento(input.nextLine());
+			evn.setDescricao_evento(input.next());
 			
 			System.out.println("Digite o ID da categoria");
 			imprimirCategoria(categorias);
 			evn.setId_categoria(input.nextInt());
 			
-			System.out.print("Informe a data do evento DD/MM/AAAA:");
-			evn.setData_evento(input.nextLine());
+			System.out.print("Informe a data do evento DD/MM/AAAA: ");
+			evn.setData_evento(input.next());
 			
 			input.nextLine();
 			
@@ -156,4 +190,17 @@ public class EventoView
 	
 		in.close();
 	}	// Fim menuAtualizar
+	
+	public static void menuDeletar(Evento evento)
+	{
+		System.out.print("Nome ("+ evento.getId() +"): " + evento.getNome_evento() + "");
+		if (MainView.trueDecision() == "SIM")
+		{
+			EventoController.deletarEvento(evento.getId());
+			System.out.println("Operação realizada com sucesso!");
+		}
+		else
+			System.out.println("Operação cancelada!");
+		
+	}	// Fim menuDeletar
 }	// Fim EventoView

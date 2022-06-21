@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-
 import br.edu.up.model.Evento;
 
 public class EventoController 
@@ -33,7 +32,8 @@ public class EventoController
 		return evento;
 	}
 
-	public static List<Evento> localizarNome(String nome) {
+	public static List<Evento> localizarNome(String nome) 
+	{
 		iniciarEm();
 		
 		TypedQuery<Evento> query = em.createQuery(
@@ -60,4 +60,22 @@ public class EventoController
 		em.merge(evento);
 		em.getTransaction().commit();
 	}	// Fim atualizarEvento
+	
+	public static void deletarEvento(Integer id)
+	{
+		Evento evento = em.find(Evento.class, id);
+		em.getTransaction().begin();
+		em.remove(evento);
+		em.getTransaction().commit();
+	}	// Fim deletarEvento
+	
+	public static List<Evento> localizarComCatagoria (Integer cat)
+	{
+		iniciarEm();
+		
+		TypedQuery<Evento> query = em.createQuery(
+		"SELECT e FROM Evento e WHERE e.id_categoria = :name", Evento.class);
+		List<Evento> evento = query.setParameter("name", cat).getResultList();
+		return evento;
+	}	// Fim localizarComCatagoria
 }	// Fim EventoController

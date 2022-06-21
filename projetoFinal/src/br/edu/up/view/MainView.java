@@ -18,14 +18,15 @@ public class MainView
 		
 		// Objetos
 		List<Evento> eventos = EventoController.ListarEventos();
+		List<CategoriaEvento> cats = CategoriaEventoController.ListarCategorias();
 		Scanner input = new Scanner (System.in);
 		
 		System.out.println("Quais operações deseja realizar");
 		System.out.println();
 		System.out.println("1 - Imprimir todos os eventos.");
 		System.out.println("2 - Selecionar evento por nome.");
-		System.out.println("3 - Selecionar eventos por data.");
-		System.out.println("4 - Selecionar eventos po categoria.");
+		System.out.println("3 - Selecionar eventos po categoria.");
+		System.out.println("4 - Inserir evento.");
 		System.out.println();
 		System.out.print("Informe atrávés de seu número qual deseja: ");
 		op = input.nextInt();
@@ -41,6 +42,14 @@ public class MainView
 			
 			case 2:
 				EventoView.imprimirEventoNome();
+				break;
+			
+			case 3:
+				EventoView.imprimirPorCategorias();
+				break;
+				
+			case 4:
+				EventoView.menuCadastroEventos(cats);
 				break;
 				
 			default:
@@ -78,6 +87,12 @@ public class MainView
 			case 2:
 				EventoView.menuAtualizar(evento);
 				break;
+			case 3:
+				EventoView.menuDeletar(evento);
+				break;
+				
+			default:
+				System.out.println("Opção não registrada no sistema.");
 		}	// Fim switch	
 		
 		in.close();
@@ -91,6 +106,7 @@ public class MainView
 			
 		do
 		{
+			System.out.println();
 			System.out.println("Realmente deseja fazer está operação?");
 			System.out.println("1 - SIM | 0 - NÃO");
 			int deci = in.nextInt();
