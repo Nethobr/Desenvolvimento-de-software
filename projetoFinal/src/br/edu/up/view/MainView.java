@@ -10,7 +10,7 @@ import br.edu.up.model.Evento;
 
 public class MainView 
 {
-	@SuppressWarnings("unused")
+//	@SuppressWarnings("unused")
 	public static void oqueDeseja ()
 	{
 		// Operador
@@ -22,18 +22,16 @@ public class MainView
 		Scanner input = new Scanner (System.in);
 		
 		System.out.println("-----------------------------------------");
-		System.out.println("Quais operaÃ§Ãµes deseja realizar");
+		System.out.println("Quais operações deseja realizar");
 		System.out.println();
 		System.out.println("1 - Imprimir todos os eventos.");
 		System.out.println("2 - Selecionar evento por nome.");
 		System.out.println("3 - Selecionar eventos por categoria.");
 		System.out.println("4 - Inserir evento.");
 		System.out.println();
-		System.out.print("Informe atrÃ¡vÃ©s de seu nÃºmero qual deseja: ");
+		System.out.print("Informe através de seu número qual deseja: ");
 		op = input.nextInt();
-		System.out.println();
 		System.out.println("-----------------------------------------");
-		System.out.println();
 		
 		switch (op)
 		{
@@ -54,7 +52,7 @@ public class MainView
 				break;
 				
 			default:
-				System.out.println("Valor invÃ¡lido!");
+				System.out.println("Valor inválido!");
 		}	// Fim switch
 		
 		input.close();
@@ -66,22 +64,20 @@ public class MainView
 		int op;
 		
 		// Objetos
-
-		List<CategoriaEvento> cat = CategoriaEventoController.ListarCategorias();
 		Evento evento = EventoController.localizar(id);
 		
 		System.out.println("-----------------------------------------");
-		System.out.println("Qual operaÃ§Ã£o crud deseja realizar?");
+		System.out.println("Qual operações crud deseja realizar?");
 		System.out.println();
-		System.out.println("1 - Inserir novo evento.");
-		System.out.println("2 - Atualizar evento atual.");
-		System.out.println("3 - Deletar evento atual.");
-		System.out.println("4 - Sair.");
+		System.out.println("1 - Atualizar evento atual.");
+		System.out.println("2 - Deletar evento atual.");
+		System.out.println("3 - Sair.");
 
 		
 		int keep = 0;
 		do
 		{
+			@SuppressWarnings("resource")
 			Scanner in = new Scanner (System.in);
 			op = in.nextInt();
 			System.out.println();
@@ -90,33 +86,29 @@ public class MainView
 			switch (op)
 			{
 				case 1:
-					EventoView.menuCadastroEventos(cat);
-					keep = 1;
-					break;
-				case 2:
 					EventoView.menuAtualizar(evento);
 					keep = 1;
 					break;
-				case 3:
+				case 2:
 					EventoView.menuDeletar(evento);
 					keep = 1;
 					break;
-				case 4:
-					System.out.println("Saindo das opÃ§Ãµes de crud.");
+				case 3:
+					System.out.println("Saindo das operações de crud.");
 					keep = 1;
 					break;
 				default:
-					System.out.println("OpÃ§Ã£o nÃ£o registrada no sistema.");
+					System.out.println("Operações não registrada no sistema.");
 					keep = 0;
 			}	// Fim switch
-			
-			keepProgram();
-			in.close();
+//			in.close();
 		} while (keep != 1);
+		keepProgram();
 	}	//Fim crudOp
 	
 	public static String trueDecision()
 	{
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String res = "";
 		int keep = 1;
@@ -126,8 +118,8 @@ public class MainView
 		do
 		{
 			System.out.println();
-			System.out.println("Realmente deseja fazer estÃ¡ operaÃ§Ã£o?");
-			System.out.println("1 - SIM | 0 - NÃƒO");
+			System.out.println("Realmente deseja fazer está operação?");
+			System.out.println("1 - SIM | 0 - NÃO");
 			int deci = in.nextInt();
 			
 			switch (deci)
@@ -143,7 +135,7 @@ public class MainView
 					break;
 					
 				default:
-					System.out.println("Operador invÃ¡lido.");
+					System.out.println("Operador inválido.");
 					keep = 1;
 			}
 		}	while (keep != 0);	
@@ -157,13 +149,14 @@ public class MainView
 		int op;
 		System.out.println();
 		System.out.println("-----------------------------------------");
-		System.out.println("Deseja realizar mais operaÃ§Ãµes (1 = SIM)?");
+		System.out.println("Deseja realizar mais operações (1 = SIM)?");
 		op = input.nextInt();
 
 		switch (op)
 		{
 			case 1:
 				oqueDeseja();
+				break;
 			default:
 				System.out.println("Fim do programa.");
 		}	// Fim switch		

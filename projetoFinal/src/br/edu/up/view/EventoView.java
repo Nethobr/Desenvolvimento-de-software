@@ -17,7 +17,7 @@ public class EventoView
 			System.out.println();
 			CategoriaEvento cat = CategoriaEventoController.localizar(evento.getId_categoria());
 			System.out.println("- Nome: " + evento.getNome_evento() + " (" + evento.getId() + ").");
-			System.out.println("- Descri√ß√£o: " + evento.getDescricao_evento());
+			System.out.println("- DescriÁ„o: " + evento.getDescricao_evento());
 			System.out.println("- Categoria: " + cat.getNome_categoria());
 			System.out.println("- Data: " + evento.getData_evento());
 		}	// Fim for	
@@ -40,7 +40,7 @@ public class EventoView
 		
 		if (eventos.isEmpty())
 		{
-			System.out.println("O evento " + nome + " n√£o est√° cadastrado.");
+			System.out.println("O evento " + nome + " n„o est· cadastrado.");
 		} 
 		else
 		{
@@ -49,7 +49,7 @@ public class EventoView
 				System.out.println();
 				CategoriaEvento cat = CategoriaEventoController.localizar(evn.getId_categoria());
 				System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
-				System.out.println("- Descri√ß√£o: " + evn.getDescricao_evento());
+				System.out.println("- DescriÁ„o: " + evn.getDescricao_evento());
 				System.out.println("- Categoria: " + cat.getNome_categoria());
 				System.out.println("- Data: " + evn.getData_evento());
 				System.out.println();
@@ -57,6 +57,7 @@ public class EventoView
 			}	// Fim for
 			MainView.crudOp(atualEvento.getId());
 		}
+		MainView.keepProgram();
 		input.close();
 	}	// Fim imprimirEventoNome
 		
@@ -94,7 +95,7 @@ public class EventoView
 		
 		if (eventos.isEmpty())
 		{
-			System.out.println("N√£o tem nenhum evento registrado com est√° categoria.");
+			System.out.println("N„o tem nenhum evento registrado com est· categoria.");
 		} 
 		else
 		{
@@ -103,7 +104,7 @@ public class EventoView
 				System.out.println();
 				CategoriaEvento c = CategoriaEventoController.localizar(evn.getId_categoria());
 				System.out.println("- Nome: " + evn.getNome_evento() + " (" + evn.getId() + ").");
-				System.out.println("- Descri√ß√£o: " + evn.getDescricao_evento());
+				System.out.println("- DescriÁ„o: " + evn.getDescricao_evento());
 				System.out.println("- Categoria: " + c.getNome_categoria());
 				System.out.println("- Data: " + evn.getData_evento());
 				System.out.println();
@@ -126,7 +127,7 @@ public class EventoView
 			System.out.print("Informe o nome do evento: ");
 			evn.setNome_evento(input.next());
 			
-			System.out.print("Descri√ß√£o do evento: ");
+			System.out.print("DescriÁ„o do evento: ");
 			evn.setDescricao_evento(input.next());
 			
 			System.out.println("Digite o ID da categoria");
@@ -166,7 +167,7 @@ public class EventoView
 		
 		System.out.print("Novo nome (" +evento.getNome_evento() + "): ");
 		String nome = in.next();
-		System.out.print("Descri√ß√£o: ");
+		System.out.print("DescriÁ„o: ");
 		String desc = in.next();
 		System.out.print("Categoria (" + cat.getNome_categoria() + "): ");
 		Integer catE = in.nextInt();
@@ -187,10 +188,10 @@ public class EventoView
 		if (MainView.trueDecision() == "SIM")
 		{
 			EventoController.atualizarEvento(newEvento);
-			System.out.println("Opera√ß√£o realizada com sucesso!");
+			System.out.println("OperaÁ„o realizada com sucesso!");
 		}
 		else
-			System.out.println("Opera√ß√£o cancelada!");
+			System.out.println("OperaÁ„o cancelada!");
 		
 		MainView.keepProgram();
 		
@@ -204,10 +205,10 @@ public class EventoView
 		if (MainView.trueDecision() == "SIM")
 		{
 			EventoController.deletarEvento(evento.getId());
-			System.out.println("Opera√ß√£o realizada com sucesso!");
+			System.out.println("OperaÁ„o realizada com sucesso!");
 		}
 		else
-			System.out.println("Opera√ß√£o cancelada!");
+			System.out.println("OperaÁ„o cancelada!");
 		
 		MainView.keepProgram();	
 	}	// Fim menuDeletar
