@@ -123,23 +123,23 @@ public class EventoView
 		{
 			Evento evn = new Evento ();
 			
-			System.out.println();
 			System.out.print("Informe o nome do evento: ");
 			evn.setNome_evento(input.next());
 			
 			System.out.print("Descrição do evento: ");
 			evn.setDescricao_evento(input.next());
-			input.nextLine();
+			
 			System.out.println("Digite o ID da categoria");
 			imprimirCategoria(categorias);
 			evn.setId_categoria(input.nextInt());
-			input.nextLine();
+			
 			System.out.print("Informe a data do evento DD/MM/AAAA: ");
 			evn.setData_evento(input.next());
 			
 			EventoController.salvarEvento(evn);
 			System.out.print("Desenha continuar? (1 = CONTINUAR): ");
 			int temp = input.nextInt();
+			System.out.println();
 			if (temp != 1)
 			{
 				if (count > 0)
